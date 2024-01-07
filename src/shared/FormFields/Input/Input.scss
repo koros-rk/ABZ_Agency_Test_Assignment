@@ -1,0 +1,98 @@
+@import "../../../slyles/variables";
+@import "../../../slyles/mixins";
+
+.field {
+  display: flex;
+  position: relative;
+  background: $background;
+  max-width: 380px;
+
+  &_button {
+    background-color: $background;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid rgba(0, 0, 0, 0.87);
+
+    padding: 14px 15px;
+
+    &--error {
+      border: 2px solid $error;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: $lightGrey;
+    }
+  }
+
+  &_input {
+    width: 100%;
+    background-color: $background;
+    padding: 14px 16px;
+
+    &--default {
+      border-radius: 4px;
+      border: 1px solid $lightGrey;
+
+      &:focus {
+        outline: none;
+      }
+
+      &--error {
+        border: solid $error;
+        border-width: 2px 2px 2px 0;
+      }
+    }
+
+    &--upload {
+      border-radius: 0 4px 4px 0;
+      border: solid $lightGrey;
+      border-width: 1px 1px 1px 0;
+
+      &:focus {
+        outline: none;
+      }
+
+      &--error {
+        border: solid $error;
+        border-width: 2px 2px 2px 0;
+      }
+    }
+  }
+
+  &_label {
+    display: block;
+    visibility: hidden;
+    background-color: $background;
+    padding: 0 5px;
+
+    position: absolute;
+    top: -6px;
+    left: 16px;
+
+    font-size: 12px;
+    line-height: 14px;
+    color: $grey;
+
+    &--visible {
+      visibility: visible;
+    }
+  }
+
+  &_info {
+    position: absolute;
+    bottom: -18px;
+    left: 16px;
+
+    font-size: 12px;
+    line-height: 14px;
+    color: $grey;
+
+    &--hidden {
+      visibility: hidden;
+    }
+
+    &--error {
+      color: $error;
+    }
+  }
+}

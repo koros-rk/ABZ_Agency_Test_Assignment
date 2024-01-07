@@ -1,0 +1,43 @@
+@import '../../slyles/mixins';
+@import '../../slyles/variables';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+
+  @include onPhone() {
+    max-width: 328px;
+  }
+
+  @include onTablet() {
+    max-width: 344px;
+  }
+
+  @include onLaptop() {
+    max-width: 282px;
+  }
+
+  @include onDesktop() {
+    max-width: 370px;
+  }
+
+  width: 100%;
+  padding: 20px;
+
+  background: #FFF;
+  border-radius: 10px;
+
+  &_info {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+
+    &--title {
+      margin: 20px 0;
+    }
+  }
+}

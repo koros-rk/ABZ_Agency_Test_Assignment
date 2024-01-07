@@ -1,0 +1,15 @@
+//@import "./fonts";
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import "./variables";
+
+* {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+body {
+  background-color: $background;
+}

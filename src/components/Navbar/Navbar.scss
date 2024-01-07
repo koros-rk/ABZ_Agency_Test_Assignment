@@ -1,0 +1,31 @@
+@import '../../slyles/mixins';
+@import '../../slyles/variables';
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: white;
+
+  @include onPhone() {
+    padding: 0 16px;
+  }
+
+  @include onTablet() {
+    padding: 0 32px;
+  }
+
+  @include onLaptop() {
+    padding: 0 60px;
+  }
+
+  @include onDesktop() {
+    padding: 0 60px;
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+}

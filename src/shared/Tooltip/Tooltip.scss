@@ -1,0 +1,10 @@
+.tooltip {
+  &_container {
+    width: 100%;
+  }
+
+  &_message {
+    position: absolute;
+    top: 10px;
+  }
+}

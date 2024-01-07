@@ -1,0 +1,40 @@
+@mixin HeadingFont {
+  font-family: "Nunito", sans-serif ;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+@mixin grid($rows: null, $columns: null, $gap: null, $row-gap: null, $column-gap: null) {
+  display: grid;
+  gap: $gap;
+  row-gap: $row-gap;
+  column-gap: $column-gap;
+  grid-template-rows: $rows;
+  grid-template-columns: $columns;
+}
+
+@mixin onPhone {
+  @media (min-width: 360px)  {
+    @content;
+  }
+}
+
+@mixin onTablet {
+  @media (min-width: 2*344px + 16px + 15px)  {
+    @content;
+  }
+}
+
+@mixin onLaptop {
+  @media (min-width: 3*282px + 2*29px + 15px)  {
+    @content;
+  }
+}
+
+@mixin onDesktop {
+  @media (min-width: 3*370px + 2*29px + 15px)  {
+    @content;
+  }
+}
