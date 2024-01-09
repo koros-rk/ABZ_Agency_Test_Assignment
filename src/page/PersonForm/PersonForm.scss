@@ -7,29 +7,45 @@
   align-items: center;
   gap: 50px;
 
-  @include onPhone() {
-    width: 328px;
-  }
-  @include onTablet() {
-    width: 380px;
-  }
-  @include onLaptop() {
-    width: 380px;
-  }
-  @include onDesktop() {
-    width: 380px;
-  }
-
   &_title {
     @include HeadingFont();
     text-align: center;
+
+    @include onPhone() {
+      width: 328px;
+    }
+    @include onTablet() {
+      width: 100%;
+    }
   }
 
   &_container {
     display: flex;
     flex-direction: column;
     gap: 50px;
+
+    @include onPhone() {
+      width: 328px;
+    }
+    @include onTablet() {
+      width: 380px;
+    }
   }
 
-  &_button {}
+  &_button {
+    align-self: center;
+  }
+
+  &_radio_group {
+    margin-top: -7px;
+
+    &-title {
+      padding-bottom: 11px;
+    }
+    &-container {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+  }
 }

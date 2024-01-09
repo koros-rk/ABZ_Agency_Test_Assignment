@@ -1,8 +1,10 @@
 import React from 'react';
 import './Button.scss';
+import classNames from 'classnames';
 
 interface Props {
   type: 'anchor' | 'submit';
+  size?: 'md' | 'lg';
   children: React.ReactNode;
   onClick?: () => void
   disabled?: boolean;
@@ -11,6 +13,7 @@ interface Props {
 
 export const Button: React.FC<Props> = ({
   type,
+  size = 'md',
   onClick = () => {},
   disabled = false,
   children,
@@ -18,7 +21,9 @@ export const Button: React.FC<Props> = ({
 }) => {
   return (
     <button
-      className={`action_button ${className}`}
+      className={classNames(`action_button ${className}`, {
+        'action_button--large': size === 'lg',
+      })}
       type={type === 'anchor' ? 'button' : 'submit'}
       disabled={disabled}
       onClick={onClick}

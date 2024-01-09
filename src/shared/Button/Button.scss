@@ -2,11 +2,17 @@
 
 .action_button {
   width: 100px;
-  padding: 4px;
+  padding: 4px 0;
 
-  background: rgba($primary, 0.87);
+  background: $primary;
   border: none;
   border-radius: 80px;
+
+  color: rgba(0, 0, 0, 0.87);
+
+  &--large {
+    width: 120px;
+  }
 
   &:hover {
     background: $primary-active;

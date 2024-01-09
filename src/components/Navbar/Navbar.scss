@@ -22,6 +22,8 @@
 
   @include onDesktop() {
     padding: 0 60px;
+    justify-content: center;
+    gap: 856px;
   }
 }
 

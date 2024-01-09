@@ -3,26 +3,31 @@ import './Radio.scss';
 
 interface Props {
   name: string,
-  value: string,
-  checked?: boolean
+  value: number,
+  text: string,
+  checked: boolean,
+  handleChange: (value: number) => void
 }
 
 export const Radio: React.FC<Props> = ({
   name,
   value,
-  checked = false,
+  text,
+  checked,
+  handleChange,
 }) => {
   return (
     <div className="radio">
       <input
         type="radio"
-        id={value}
+        id={text}
         name={name}
         value={value}
         defaultChecked={checked}
         className="radio_button"
+        onChange={(e) => handleChange(+e.target.value)}
       />
-      <label htmlFor={value} className="radio_label">{value}</label>
+      <label htmlFor={text} className="radio_label">{text}</label>
     </div>
   );
 };

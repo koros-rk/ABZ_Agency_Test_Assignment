@@ -3,6 +3,7 @@
 
 .field {
   display: flex;
+  box-sizing: border-box;
   position: relative;
   background: $background;
   max-width: 380px;
@@ -27,7 +28,7 @@
   &_input {
     width: 100%;
     background-color: $background;
-    padding: 14px 16px;
+    padding: 13px 16px;
 
     &--default {
       border-radius: 4px;
@@ -38,8 +39,7 @@
       }
 
       &--error {
-        border: solid $error;
-        border-width: 2px 2px 2px 0;
+        border: 2px solid $error;
       }
     }
 
@@ -50,6 +50,12 @@
 
       &:focus {
         outline: none;
+      }
+
+      &--fake {
+        position: absolute;
+        left: 1000px;
+        visibility: hidden;
       }
 
       &--error {
@@ -75,6 +81,10 @@
 
     &--visible {
       visibility: visible;
+    }
+
+    &--error {
+      color: $error;
     }
   }
 

@@ -14,7 +14,14 @@ export const Header: React.FC = () => {
         interfaces with accessibility in mind. They should also be excited to learn, as the
         world of Front-End Development keeps evolving.
       </p>
-      <Button type="anchor">Sing Up</Button>
+      <Button
+        type="anchor"
+        onClick={() => {
+          window.location.href = '#addPerson';
+        }}
+      >
+        Sign up
+      </Button>
     </section>
   );
 };

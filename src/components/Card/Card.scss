@@ -8,26 +8,30 @@
   box-sizing: border-box;
 
   @include onPhone() {
-    max-width: 328px;
+    width: 328px;
   }
 
   @include onTablet() {
-    max-width: 344px;
+    width: 344px;
   }
 
   @include onLaptop() {
-    max-width: 282px;
+    width: 282px;
   }
 
   @include onDesktop() {
-    max-width: 370px;
+    width: 370px;
   }
 
-  width: 100%;
+  //width: 100%;
   padding: 20px;
 
   background: #FFF;
   border-radius: 10px;
+
+  &_photo {
+    border-radius: 50%;
+  }
 
   &_info {
     width: 100%;

@@ -1,29 +1,86 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './Input.scss';
+import classNames from 'classnames';
+import { ErrorMessages } from '../../../page/PersonForm/types/ErrorMessages';
 
 interface Props {
-  onSubmit: () => void
+  error: string
+  setError: (value: string) => void
+  onFileSelect: (file: File) => void
+  imageValidation: (file: File) => { isValid: boolean, error: ErrorMessages | null }
 }
 
 export const Textarea: React.FC<Props> = ({
-  onSubmit = () => {},
+  error,
+  setError,
+  onFileSelect,
+  imageValidation,
 }) => {
+  const input = useRef<HTMLInputElement>(null);
+  const visibleInput = useRef<HTMLInputElement>(null);
+  const isValid = !error;
+
+  const openFileBrowser = () => {
+    if (input.current) {
+      input.current.click();
+    }
+  };
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.item(0);
+
+    if (selectedFile) {
+      const { isValid: isFileValid, error: errorMessage } = imageValidation(selectedFile);
+      const { name } = selectedFile;
+
+      if (visibleInput.current && name) {
+        visibleInput.current.value = name;
+      }
+
+      if (errorMessage) {
+        setError(errorMessage);
+      }
+
+      if (isFileValid) {
+        onFileSelect(selectedFile);
+        setError('');
+      }
+    }
+  };
+
   return (
     <div className="field">
       <button
         type="button"
-        className="field_button"
-        onClick={onSubmit}
+        className={classNames('field_button', {
+          'field_button--error': !isValid,
+        })}
+        onClick={openFileBrowser}
       >
         Upload
       </button>
       <input
         type="text"
-        className="field_input field_input--upload"
+        ref={visibleInput}
+        className={classNames('field_input field_input--upload', {
+          'field_input--upload--error': !isValid,
+        })}
         placeholder="Upload your photo"
         readOnly
       />
-      <p className="field_info field_info--hidden">Error text</p>
+      <input
+        type="file"
+        ref={input}
+        className="field_input field_input--upload--fake"
+        onChange={handleFileSelect}
+      />
+      <p className={classNames('field_info', {
+        'field_info--hidden': isValid,
+        'field_info--error': !isValid,
+      })}
+      >
+        {error}
+      </p>
     </div>
   );
 };
