@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://frontend-test-assignment-api.abz.agency/api/v1/',
+  baseURL: process.env.REACT_APP_API_URL,
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
