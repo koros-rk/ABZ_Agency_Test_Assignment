@@ -7,35 +7,22 @@ import { Button } from '../../shared/Button/Button';
 import { Input } from '../../shared/FormFields/Input/Input';
 import { Radio } from '../../shared/Radio/Radio';
 import { Textarea } from '../../shared/FormFields/Input/Textarea';
-import { formReducer } from './formReducer';
+import { formReducer } from './utils/formReducer';
 import { FormActionType } from './types/FormState/FormActionType';
 import { ValidationPatterns } from './types/ValidationPatterns';
 import * as PositionClient from '../../api/fetchClient/positions';
 import { Position } from '../../api/types/Position';
 import { Preloader } from '../../shared/Preloader/Preloader';
 import * as UserClient from '../../api/fetchClient/users';
-import { errorReducer } from './errorReducer';
+import { errorReducer } from './utils/errorReducer';
 import { ErrorsActionType } from './types/ErrorState/ErrorsActionType';
-import { createImageValidator } from './createImageValidator';
+import { createImageValidator } from './utils/createImageValidator';
 import { Modal } from '../../components/Modal/Modal';
 import {useAppDispatch, useAppSelector} from "../../api/store/hooks";
 import {UserSelector} from "../../api/store/slices/users/User.slice";
 import {getUsers} from "../../api/store/slices/users/AsyncActions/get";
-
-const initialFormState = {
-  name: '',
-  email: '',
-  phone: '',
-  position_id: 1,
-  photo: null,
-};
-
-const initialErrorState = {
-  nameError: '',
-  emailError: '',
-  phoneError: '',
-  photoError: '',
-};
+import {initialErrorState} from "./states/InitialErrorState";
+import {initialFormState} from "./states/InitialFormState";
 
 export const PersonForm: React.FC = () => {
   const { startPosition } = useAppSelector(UserSelector);
@@ -84,6 +71,7 @@ export const PersonForm: React.FC = () => {
         if (status) {
           window.location.href = '#personList';
           dispatch(getUsers({ ...startPosition, replace: true }));
+          formDispatch({ type: FormActionType.clear });
         } else {
           if (fails) {
             if (fails.name) {
@@ -183,6 +171,7 @@ export const PersonForm: React.FC = () => {
         <Textarea
           error={errorState.photoError}
           setError={createErrorSetter(ErrorsActionType.setPhotoError)}
+          file={formState.photo}
           onFileSelect={createFormSetter(FormActionType.setPhoto)}
           imageValidation={
             createImageValidator({

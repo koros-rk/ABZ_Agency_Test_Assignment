@@ -5,4 +5,5 @@ export enum FormActionType {
   setPhone,
   setPosition,
   setPhoto,
+  clear
 }

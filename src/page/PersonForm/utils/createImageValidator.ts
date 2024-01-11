@@ -1,4 +1,4 @@
-import { ErrorMessages } from './types/ErrorMessages';
+import { ErrorMessages } from '../types/ErrorMessages';
 
 type CreateImageValidator = (
   { maxSize, formats }: {

@@ -8,6 +8,10 @@
   background: $background;
   max-width: 380px;
 
+  &--upload {
+    overflow: hidden;
+  }
+
   &_button {
     background-color: $background;
     border-radius: 4px 0 0 4px;

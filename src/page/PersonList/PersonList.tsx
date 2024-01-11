@@ -16,12 +16,12 @@ export const PersonList: React.FC = () => {
     return current_page < total_pages;
   }, [current_page, total_pages]);
 
-  const loadNext = useCallback(() => {
-    dispatch(getUsers({ page: next_page, count: on_page }));
+  const loadNext = useCallback((page = current_page, count = on_page) => {
+    dispatch(getUsers({ page, count }));
   }, [next_page, on_page]);
 
   useEffect(() => {
-    dispatch(getUsers({ page: current_page, count: on_page }));
+    loadNext();
   }, []);
 
   return (
@@ -37,7 +37,7 @@ export const PersonList: React.FC = () => {
         className={classNames('list_item list_item--button', {
           'list_item--button--hidden': !hasNext,
         })}
-        onClick={() => loadNext()}
+        onClick={() => loadNext(next_page, on_page)}
         disabled={!hasNext}
       >
         Show more

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 import './Input.scss';
 import classNames from 'classnames';
 import { ErrorMessages } from '../../../page/PersonForm/types/ErrorMessages';
@@ -6,6 +6,7 @@ import { ErrorMessages } from '../../../page/PersonForm/types/ErrorMessages';
 interface Props {
   error: string
   setError: (value: string) => void
+  file: File | null
   onFileSelect: (file: File) => void
   imageValidation: (file: File) => { isValid: boolean, error: ErrorMessages | null }
 }
@@ -13,6 +14,7 @@ interface Props {
 export const Textarea: React.FC<Props> = ({
   error,
   setError,
+  file,
   onFileSelect,
   imageValidation,
 }) => {
@@ -31,11 +33,6 @@ export const Textarea: React.FC<Props> = ({
 
     if (selectedFile) {
       const { isValid: isFileValid, error: errorMessage } = imageValidation(selectedFile);
-      const { name } = selectedFile;
-
-      if (visibleInput.current && name) {
-        visibleInput.current.value = name;
-      }
 
       if (errorMessage) {
         setError(errorMessage);
@@ -48,8 +45,20 @@ export const Textarea: React.FC<Props> = ({
     }
   };
 
+  useEffect(() => {
+    let name = '';
+
+    if (file) {
+        name = file.name;
+    }
+
+    if (visibleInput.current) {
+        visibleInput.current.value = name;
+    }
+  }, [file]);
+
   return (
-    <div className="field">
+    <div className="field field--upload">
       <button
         type="button"
         className={classNames('field_button', {

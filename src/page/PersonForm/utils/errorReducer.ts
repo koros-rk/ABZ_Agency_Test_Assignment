@@ -1,5 +1,5 @@
-import { ErrorsActionType } from './types/ErrorState/ErrorsActionType';
-import { ErrorState } from './types/ErrorState/ErrorState';
+import { ErrorsActionType } from '../types/ErrorState/ErrorsActionType';
+import { ErrorState } from '../types/ErrorState/ErrorState';
 
 export const errorReducer = (
   state: ErrorState,

@@ -9,11 +9,11 @@ export const App: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="container">
+      <main className="container">
         <Header />
         <PersonList />
         <PersonForm />
-      </div>
+      </main>
     </>
   );
 };

@@ -1,9 +1,10 @@
-import { FormState } from './types/FormState/FormState';
-import { FormActionType } from './types/FormState/FormActionType';
+import { FormState } from '../types/FormState/FormState';
+import { FormActionType } from '../types/FormState/FormActionType';
+import {initialFormState} from "../states/InitialFormState";
 
 export const formReducer = (
   state: FormState,
-  { type, payload }: { type: FormActionType, payload: string | number | File },
+  { type, payload }: { type: FormActionType, payload?: string | number | File },
 ): FormState => {
   switch (type) {
     case FormActionType.setName: {
@@ -59,6 +60,11 @@ export const formReducer = (
       }
 
       return state;
+    }
+
+
+    case FormActionType.clear: {
+      return initialFormState;
     }
 
     default: {
