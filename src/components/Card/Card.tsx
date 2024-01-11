@@ -20,11 +20,9 @@ export const Card: React.FC<Props> = ({ user, className = '' }) => {
         className="card_photo"
       />
 
-      {/* <Tooltip message="Tooltip message"> */}
       <p className="card_info card_info--title">
         {user.name}
       </p>
-      {/* </Tooltip> */}
 
       <p className="card_info">
         {user.position}
